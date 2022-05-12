@@ -453,12 +453,9 @@ static int dvb_dmxdev_update_events(struct dmxdev_events_queue *events,
 				 * data was read beyond the non-data event,
 				 * making it not relevant anymore
 				 */
-				events->notified_index =
-					dvb_dmxdev_advance_event_idx(
-						events->notified_index);
-				if (!(events->event_mask.no_wakeup_mask &
-					event->type))
-					events->wakeup_events_counter--;
+			events->notified_index = dvb_dmxdev_advance_event_idx(events->notified_index);
+			if (!(events->event_mask.no_wakeup_mask & event->type))
+			  events->wakeup_events_counter--;
 		}
 
 		events->read_index = events->notified_index;
